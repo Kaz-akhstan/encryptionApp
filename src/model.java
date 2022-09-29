@@ -7,7 +7,7 @@ public class model {
     String message;
     String keyFile;
     String keyInput;
-    String key;
+    int key;
     String encryptedMessage;
 
     public String readMessageFromFile(String filename)
@@ -32,34 +32,36 @@ public class model {
         return null; // FIXME: 2022-09-29
     }
 
-    public String readKeyFromFile(String keyFile)
+    public int readKeyFromFile(String keyFile)
     {
-        String key = "";
+        int key = 0;
         try {
             BufferedReader br = new BufferedReader(new FileReader(keyFile));
-            key = br.readLine();
+            key = br.read();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return key;
     }
 
-    public String readKeyFromInput(String keyInput)
+    public int readKeyFromInput(int keyInput)
     {
         return keyInput;
     }
 
-    public String readKeyFromEncryptedFile(String keyFile)
+    public int readKeyFromEncryptedFile(String keyFile)
     {
-        return null; // FIXME: 2022-09-29
+        return 0; // FIXME: 2022-09-29
     }
 
-    public String encryptMessage(String message, String key)
+    public String encryptMessage(String message, int key)
     {
         String encrypted = "";
-        ArrayList<Integer>intList = new ArrayList<>();
+        char[] encryptedMsg = new char[message.length()];
         for (int i = 0; i < message.length(); i++) {
-            encrypted += message.charAt(i)^'P';
+            encryptedMsg[i] += message.charAt(i) ^key;
+            encrypted += encryptedMsg[i];
+            System.out.println(encrypted);
         }
         return encrypted;
     }
@@ -73,8 +75,10 @@ public class model {
     {
         DataOutputStream dos;
         try {
-            dos = new DataOutputStream(new FileOutputStream(filename));
-            dos.writeBytes(encryptedMessage);
+            dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
+            dos.write(encryptedMessage.getBytes());
+            dos.flush();
+            dos.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
