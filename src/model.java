@@ -57,15 +57,9 @@ public class model {
     public String encryptMessage(String message, String key)
     {
         String encrypted = "";
-        int[] encryptedMessage = new int[message.length()];
-        int[] keyList = new int[key.length()];
-        for (int i = 0; i < keyList.length; i++) {
-            keyList[i] = key.charAt(i);
-        }
         ArrayList<Integer>intList = new ArrayList<>();
         for (int i = 0; i < message.length(); i++) {
-            encryptedMessage[i] = message.charAt(i)^Integer.parseInt(key);
-            encrypted += (char) encryptedMessage[i];
+            encrypted += message.charAt(i)^'P';
         }
         return encrypted;
     }
@@ -80,7 +74,7 @@ public class model {
         DataOutputStream dos;
         try {
             dos = new DataOutputStream(new FileOutputStream(filename));
-            dos.writeInt(Integer.parseInt(encryptedMessage));
+            dos.writeBytes(encryptedMessage);
         } catch (IOException e) {
             e.printStackTrace();
         }
