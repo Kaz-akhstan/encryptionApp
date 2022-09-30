@@ -44,7 +44,7 @@ public class model {
         return key;
     }
 
-    public int readKeyFromInput(int keyInput)
+    public String readKeyFromInput(String keyInput)
     {
         return keyInput;
     }
@@ -54,22 +54,21 @@ public class model {
         return 0; // FIXME: 2022-09-29
     }
 
-    public String encryptMessage(String message, int key)
+    public String encryptMessage(String message, String key)
     {
-        String keyString = Integer.toString(key);
-        if(message.length() > keyString.length())
+        if(message.length() > key.length())
         {
-            while (message.length() > keyString.length())
+            while (message.length() > key.length())
             {
-                keyString += Integer.toString(key);
+                key += key;
             }
-            System.out.println(keyString);
+            System.out.println(key);
         }
         System.out.println(key);
         String encrypted = "";
         char[] encryptedMsg = new char[message.length()];
         for (int i = 0; i < message.length(); i++) {
-            encryptedMsg[i] += message.charAt(i) ^ keyString.charAt(i);
+            encryptedMsg[i] += message.charAt(i) ^ key.charAt(i);
             encrypted += encryptedMsg[i];
             System.out.println(encrypted);
         }
