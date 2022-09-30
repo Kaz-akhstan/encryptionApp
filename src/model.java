@@ -66,7 +66,7 @@ public class model {
         }
         System.out.println(key);
         String encrypted = "";
-        char[] encryptedMsg = new char[message.length()];
+        int[] encryptedMsg = new int[message.length()];
         for (int i = 0; i < message.length(); i++) {
             encryptedMsg[i] += message.charAt(i) ^ key.charAt(i);
             encrypted += encryptedMsg[i];

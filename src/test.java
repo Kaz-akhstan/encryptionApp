@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class test {
     public static void main(String[] args) {
-        System.out.println(4%3);
         String s, e, k;
         Scanner sc = new Scanner(System.in);
         model m = new model();
