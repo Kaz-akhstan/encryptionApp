@@ -56,10 +56,20 @@ public class model {
 
     public String encryptMessage(String message, int key)
     {
+        String keyString = Integer.toString(key);
+        if(message.length() > keyString.length())
+        {
+            while (message.length() > keyString.length())
+            {
+                keyString += Integer.toString(key);
+            }
+            System.out.println(keyString);
+        }
+        System.out.println(key);
         String encrypted = "";
         char[] encryptedMsg = new char[message.length()];
         for (int i = 0; i < message.length(); i++) {
-            encryptedMsg[i] += message.charAt(i) ^key;
+            encryptedMsg[i] += message.charAt(i) ^ keyString.charAt(i);
             encrypted += encryptedMsg[i];
             System.out.println(encrypted);
         }
