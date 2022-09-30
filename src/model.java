@@ -54,7 +54,7 @@ public class model {
         return 0; // FIXME: 2022-09-29
     }
 
-    public String encryptMessage(String message, String key)
+    public int[] encryptMessage(String message, String key)
     {
         if(message.length() > key.length())
         {
@@ -62,17 +62,13 @@ public class model {
             {
                 key += key;
             }
-            System.out.println(key);
         }
         System.out.println(key);
-        String encrypted = "";
         int[] encryptedMsg = new int[message.length()]; //String föredetta
         for (int i = 0; i < message.length(); i++) {
             encryptedMsg[i] += message.charAt(i) ^ key.charAt(i);
-            encrypted += encryptedMsg[i];
-            System.out.println(encrypted);
         }
-        return encrypted;
+        return encryptedMsg;
     }
 
     public String decryptMessage(String encryptedMessage)
@@ -80,12 +76,14 @@ public class model {
         return null;
     }
 
-    public void outputToFile(String filename, String encryptedMessage)
+    public void outputToFile(String filename, int[] encryptedMessage)
     {
         DataOutputStream dos;
         try {
             dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
-            dos.write(encryptedMessage.getBytes()); //Försök använda dos.writeInt(encryptedMessage); Fixa en int lista
+            for (int i = 0; i < encryptedMessage.length; i++) {
+                dos.writeInt(encryptedMessage[i]);
+            }
             dos.flush();
             dos.close();
         } catch (IOException e) {

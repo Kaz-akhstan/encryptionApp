@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class test {
     public static void main(String[] args) {
-        String s, e, k;
+        String s, k;
+        int[] e;
         Scanner sc = new Scanner(System.in);
         model m = new model();
         System.out.println("Message: ");
