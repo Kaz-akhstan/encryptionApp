@@ -66,7 +66,7 @@ public class model {
         }
         System.out.println(key);
         String encrypted = "";
-        int[] encryptedMsg = new int[message.length()];
+        int[] encryptedMsg = new int[message.length()]; //String föredetta
         for (int i = 0; i < message.length(); i++) {
             encryptedMsg[i] += message.charAt(i) ^ key.charAt(i);
             encrypted += encryptedMsg[i];
@@ -85,7 +85,7 @@ public class model {
         DataOutputStream dos;
         try {
             dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
-            dos.write(encryptedMessage.getBytes());
+            dos.write(encryptedMessage.getBytes()); //Försök använda dos.writeInt(encryptedMessage); Fixa en int lista
             dos.flush();
             dos.close();
         } catch (IOException e) {
