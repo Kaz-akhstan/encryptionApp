@@ -63,7 +63,7 @@ public class model {
                 key += key;
             }
         }
-        System.out.println(key);
+        System.out.println("Long Key: " + key);
         int[] encryptedMsg = new int[message.length()]; //String föredetta
         for (int i = 0; i < message.length(); i++) {
             encryptedMsg[i] += message.charAt(i) ^ key.charAt(i);
@@ -86,6 +86,7 @@ public class model {
             }
             dos.flush();
             dos.close();
+            System.out.println("Message Encrypted and Stored Successfully");
         } catch (IOException e) {
             e.printStackTrace();
         }
