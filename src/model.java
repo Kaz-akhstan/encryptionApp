@@ -67,7 +67,6 @@ public class model {
 
     public int readKeyFromEncryptedFile(String keyFile)
     {
-
         return 0; // FIXME: 2022-09-29
     }
 
