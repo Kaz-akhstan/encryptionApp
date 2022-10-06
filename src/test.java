@@ -14,6 +14,8 @@ public class test {
         System.out.println("Encrypting Message");
         e = m.encryptMessage(s, k);
         System.out.println("Encrypted Message: " + Arrays.toString(e));
+        s = m.decryptMessage(e, k);
+        System.out.println(s);
         System.out.println("Output to file: ");
         m.outputToFile(sc.nextLine(), e);
     }

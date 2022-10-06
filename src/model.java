@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -64,20 +65,35 @@ public class model {
             }
         }
         System.out.println("Long Key: " + key);
-        int[] encryptedMsg = new int[message.length()]; //String föredetta
+        int[] encryptedMsg = new int[message.length()];
         for (int i = 0; i < message.length(); i++) {
             encryptedMsg[i] += message.charAt(i) ^ key.charAt(i);
         }
         return encryptedMsg;
     }
 
-    public String decryptMessage(String encryptedMessage)
+    public String decryptMessage(int[] encryptedMessage, String key)
     {
-        return null;
+        String message = "";
+        char[] decryptedMessage = new char[encryptedMessage.length];
+        if(encryptedMessage.length > key.length())
+        {
+            while (encryptedMessage.length > key.length())
+            {
+                key += key;
+            }
+        }
+        for (int i = 0; i < encryptedMessage.length; i++) {
+            decryptedMessage[i] += (char) encryptedMessage[i] ^ key.charAt(i);
+            message += decryptedMessage[i];
+        }
+        return message;
     }
 
     public void outputToFile(String filename, int[] encryptedMessage)
     {
+        JFileChooser j = new JFileChooser();
+        j.showSaveDialog(null);
         DataOutputStream dos;
         try {
             dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
