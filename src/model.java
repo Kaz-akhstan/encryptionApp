@@ -28,9 +28,24 @@ public class model {
         return messageInput;
     }
 
-    public String readMessageFromEncryptedFile(String filename)
+    public int[] readMessageFromEncryptedFile(String filename)
     {
-        return null; // FIXME: 2022-09-29
+        ArrayList<Integer>readMessage = new ArrayList<>();
+        DataInputStream dis;
+        try {
+            dis = new DataInputStream(new FileInputStream(filename));
+            while (dis.available()>0)
+            {
+                readMessage.add(dis.readInt());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int[] encryptedMessage = new int[readMessage.size()];
+        for (int i = 0; i < readMessage.size(); i++) {
+            encryptedMessage[i] += readMessage.get(i);
+        }
+        return encryptedMessage;
     }
 
     public int readKeyFromFile(String keyFile)
@@ -52,6 +67,7 @@ public class model {
 
     public int readKeyFromEncryptedFile(String keyFile)
     {
+
         return 0; // FIXME: 2022-09-29
     }
 
@@ -92,8 +108,6 @@ public class model {
 
     public void outputToFile(String filename, int[] encryptedMessage)
     {
-        JFileChooser j = new JFileChooser();
-        j.showSaveDialog(null);
         DataOutputStream dos;
         try {
             dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
