@@ -3,13 +3,6 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class model {
-    String filename;
-    String messageInput;
-    String message;
-    String keyFile;
-    String keyInput;
-    int key;
-    String encryptedMessage;
 
     public String readMessageFromFile(String filename)
     {
