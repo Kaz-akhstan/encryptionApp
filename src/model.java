@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class model {
 
@@ -8,8 +9,13 @@ public class model {
     {
         String message = "";
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
-            message = br.readLine();
+            Scanner reader = new Scanner(new File(filename));       //Kanske fungerar bättre
+            while (reader.hasNext())
+            {
+                message += reader.nextLine() + "\n";
+                System.out.println(message);
+            }
+            reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,6 +37,7 @@ public class model {
             {
                 readMessage.add(dis.readInt());
             }
+            dis.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,6 +54,7 @@ public class model {
         try {
             BufferedReader br = new BufferedReader(new FileReader(keyFile));
             key = br.read();
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

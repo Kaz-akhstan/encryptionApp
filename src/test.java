@@ -33,11 +33,13 @@ public class test {
         }
         if(sc.nextLine().equals("3"))
         {
-            System.out.println("Enter Message Dir: ");
-            System.out.println("Enter Key Dir: ");
-            System.out.println("Decrypting Message");
-            System.out.println("Decrypted Message: ");
-            System.out.println("Output to File");
+            System.out.println("Enter Message: ");
+            s = m.readMessageFromFile(sc.nextLine());
+            System.out.println("Enter Key: ");
+            k = m.readKeyFromInput(sc.nextLine());
+            System.out.println("Encrypting Message");
+            e = m.encryptMessage(s, k);
+            System.out.println(s);
         }
     }
 }
