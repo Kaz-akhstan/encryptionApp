@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class model {
+    String key, message;
+    int[] crypt;
 
     public String readMessageFromFile(String filename)
     {
