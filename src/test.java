@@ -10,17 +10,25 @@ public class test {
         if(sc.nextLine().equals("1"))
         {
             System.out.println("Enter Message: ");
-            s = m.readMessageFromInput(sc.nextLine());
+            m.readMessageFromInput(sc.nextLine());
             System.out.println("Enter Key: ");
-            k = m.readKeyFromInput(sc.nextLine());
+             m.readKeyFromInput(sc.nextLine());
             System.out.println("Encrypting Message");
-            e = m.encryptMessage(s, k);
-            System.out.println("Encrypted Message: " + Arrays.toString(e));
-            s = m.decryptMessage(e, k);
-            System.out.println(s);
+            m.encryptMessage(m.MESSAGE, m.KEY);
+            System.out.println("Encrypted Message: " + Arrays.toString(m.CRYPT));
+            m.decryptMessage(m.CRYPT, m.KEY);
+            System.out.println(m.MESSAGE);
             System.out.println("Output to File: ");
-            m.outputToFile(sc.nextLine(), e);
+            m.outputToFile(sc.nextLine(), m.CRYPT);
         }
+        if(sc.nextLine().equals("2"))
+        {
+            m.readMessageFromEncryptedFile("text.txt");
+            m.readKeyFromInput(sc.nextLine());
+            m.decryptMessage(m.CRYPT, m.KEY);
+            System.out.println(m.MESSAGE);
+        }
+        /*
         if(sc.nextLine().equals("2"))
         {
             System.out.println("Enter Message: ");
@@ -41,5 +49,6 @@ public class test {
             e = m.encryptMessage(s, k);
             System.out.println(s);
         }
+         */
     }
 }

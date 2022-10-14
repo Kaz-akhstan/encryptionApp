@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class model {
-    String key, message;
-    int[] crypt;
+    String KEY, MESSAGE;
+    int[] CRYPT;
 
-    public String readMessageFromFile(String filename)
+    public void readMessageFromFile(String filename)
     {
         String message = "";
         try {
@@ -21,15 +21,15 @@ public class model {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return message;
+        MESSAGE = message;
     }
 
-    public String readMessageFromInput(String messageInput)
+    public void readMessageFromInput(String messageInput)
     {
-        return messageInput;
+        MESSAGE = messageInput;
     }
 
-    public int[] readMessageFromEncryptedFile(String filename)
+    public void readMessageFromEncryptedFile(String filename)
     {
         ArrayList<Integer>readMessage = new ArrayList<>();
         DataInputStream dis;
@@ -47,10 +47,10 @@ public class model {
         for (int i = 0; i < readMessage.size(); i++) {
             encryptedMessage[i] += readMessage.get(i);
         }
-        return encryptedMessage;
+        CRYPT = encryptedMessage;
     }
 
-    public int readKeyFromFile(String keyFile)
+    public void readKeyFromFile(String keyFile)
     {
         int key = 0;
         try {
@@ -60,20 +60,15 @@ public class model {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return key;
+        KEY = String.valueOf(key);
     }
 
-    public String readKeyFromInput(String keyInput)
+    public void readKeyFromInput(String keyInput)
     {
-        return keyInput;
+        KEY = keyInput;
     }
 
-    public int readKeyFromEncryptedFile(String keyFile)
-    {
-        return 0; // FIXME: 2022-09-29
-    }
-
-    public int[] encryptMessage(String message, String key)
+    public void encryptMessage(String message, String key)
     {
         if(message.length() > key.length())
         {
@@ -87,10 +82,10 @@ public class model {
         for (int i = 0; i < message.length(); i++) {
             encryptedMsg[i] += message.charAt(i) ^ key.charAt(i);
         }
-        return encryptedMsg;
+        CRYPT = encryptedMsg;
     }
 
-    public String decryptMessage(int[] encryptedMessage, String key)
+    public void decryptMessage(int[] encryptedMessage, String key)
     {
         String message = "";
         char[] decryptedMessage = new char[encryptedMessage.length];
@@ -105,7 +100,7 @@ public class model {
             decryptedMessage[i] += (char) encryptedMessage[i] ^ key.charAt(i);
             message += decryptedMessage[i];
         }
-        return message;
+        MESSAGE = message;
     }
 
     public void outputToFile(String filename, int[] encryptedMessage)
