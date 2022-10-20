@@ -1,10 +1,11 @@
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class view {
     private JButton browseButton;
     private JTextField Filepath;
     private JRadioButton fromFileRadioButton;
-    private JPanel panel;
+    public JPanel panel;
     private JRadioButton fromInput;
     private JTextField inputField;
     private JButton send1;
@@ -33,7 +34,27 @@ public class view {
         JFrame frame = new JFrame();
         frame.setContentPane(new view().panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public String getMessage()
+    {
+        return inputField.getText();
+    }
+
+    public String getKey()
+    {
+        return fromKey2.getText();
+    }
+
+    public void showFinished(String msg)
+    {
+        JOptionPane.showMessageDialog(null, msg);
+    }
+    void addCryptListener(ActionListener listenForSave)
+    {
+        Save.addActionListener(listenForSave);
     }
 }
