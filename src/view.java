@@ -22,6 +22,7 @@ public class view {
     private JRadioButton saveToFile;
     private JRadioButton notSaveToFile;
     private JButton Save;
+    private JTextField output;
 
     public static void main(String[] args) {
         try {
@@ -39,6 +40,8 @@ public class view {
         frame.setVisible(true);
     }
 
+
+
     public String getMessage()
     {
         return inputField.getText();
@@ -49,10 +52,11 @@ public class view {
         return fromKey2.getText();
     }
 
-    public void showFinished(String msg)
+    public void setText(String msg)
     {
-        JOptionPane.showMessageDialog(null, msg);
+        output.setText(msg);
     }
+
     void addCryptListener(ActionListener listenForSave)
     {
         Save.addActionListener(listenForSave);

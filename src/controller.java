@@ -8,6 +8,14 @@ public class controller {
     public controller(view theView, model theModel) {
         this.theModel = theModel;
         this.theView = theView;
+
+        try {
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
         JFrame frame = new JFrame();
         frame.setContentPane(theView.panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,7 +34,11 @@ public class controller {
             key = theView.getKey();
             theModel.encryptMessage(msg, key);
             System.out.println(msg + key);
-            theView.showFinished(theModel.CRYPT); //FIXME
+            String s = "";
+            for (int i = 0; i < theModel.CRYPT.length; i++) {
+                s+= (char)theModel.CRYPT[i];
+            }
+            theView.setText(s);
         }
     }
 }
